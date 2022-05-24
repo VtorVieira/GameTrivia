@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class Login extends Component {
   state = {
-      name: '',
-      email: '',
-      disable: true,
+    name: '',
+    email: '',
+    disable: true,
   }
 
-  handleChange = ({target}) => {
-    const { name, value } = target; 
-    this.setState({[name]: value}, this.validateButton )
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value }, this.validateButton);
   }
 
   validateButton = () => {
@@ -66,8 +66,8 @@ class Login extends Component {
           </label>
         </section>
       </main>
-    )
+    );
   }
 }
 
-export default Login
+export default Login;
