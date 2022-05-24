@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import logo from '../trivia.png';
+
 
 class Login extends Component {
   state = {
@@ -28,10 +30,16 @@ class Login extends Component {
     }
   }
 
+  handleClickSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  }
+
   render() {
     const { name, email, disable } = this.state;
     return (
-      <main>
+      <main className="App-header">
+        <img src={ logo } className="App-logo" alt="logo" />
         <section id="LoginSection">
           <label htmlFor="NomeInput">
             Nome:
@@ -56,6 +64,7 @@ class Login extends Component {
               data-testid="input-gravatar-email"
               isrequired="true"
             />
+            </label>
             <button
               type="button"
               data-testid="btn-play"
@@ -63,7 +72,13 @@ class Login extends Component {
             >
               SUA VEZ
             </button>
-          </label>
+            <button
+              type="button"
+              data-testid="btn-settings"
+              onClick={ this.handleClickSettings }
+            >
+              Settings
+            </button>
         </section>
       </main>
     );
