@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types/';
 import logo from '../trivia.png';
+import triviaAPI from '../api/triviaAPI';
 
 class Login extends Component {
   state = {
@@ -28,6 +29,14 @@ class Login extends Component {
     } else {
       this.setState({ disable: true });
     }
+  }
+
+  handleClickPlay = async () => {
+    const { history } = this.props;
+    const dataAPI = await triviaAPI();
+    const { token } = dataAPI;
+    localStorage.setItem('token', token);
+    history.push('/game');
   }
 
   handleClickSettings = () => {
@@ -69,6 +78,7 @@ class Login extends Component {
             type="button"
             data-testid="btn-play"
             disabled={ disable }
+            onClick={ this.handleClickPlay }
           >
             SUA VEZ
           </button>
