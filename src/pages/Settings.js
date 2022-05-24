@@ -6,7 +6,7 @@ class Settings extends Component {
       <main className="App-header">
         <h1 data-testid="settings-title">Settings</h1>
       </main>
-    );  
+    );
   }
 }
 

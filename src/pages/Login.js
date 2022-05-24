@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types/';
 import logo from '../trivia.png';
-
 
 class Login extends Component {
   state = {
@@ -64,25 +64,29 @@ class Login extends Component {
               data-testid="input-gravatar-email"
               isrequired="true"
             />
-            </label>
-            <button
-              type="button"
-              data-testid="btn-play"
-              disabled={ disable }
-            >
-              SUA VEZ
-            </button>
-            <button
-              type="button"
-              data-testid="btn-settings"
-              onClick={ this.handleClickSettings }
-            >
-              Settings
-            </button>
+          </label>
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ disable }
+          >
+            SUA VEZ
+          </button>
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.handleClickSettings }
+          >
+            Settings
+          </button>
         </section>
       </main>
     );
   }
+}
+
+Login.PropTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 export default Login;
