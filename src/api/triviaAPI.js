@@ -10,6 +10,12 @@ export const getToken = async () => {
 export const getImg = async (email) => {
   const imgHash = md5(email).toString();
   const url = `https://www.gravatar.com/avatar/${imgHash}`;
-  console.log(url);
   return url;
+};
+
+export const getQuestions = async (token) => {
+  const URL = `https://opentdb.com/api.php?amount=5&token=${token}`;
+  const response = await fetch(URL);
+  const data = await response.json();
+  return data;
 };
