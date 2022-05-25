@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types/';
 import { getQuestions } from '../api/triviaAPI';
 import Header from '../components/Header';
+import './Game.css';
 
 class Games extends Component {
   state = {
     questions: [],
     incorrectQuestions: [],
+    buttonColorCorrect: '',
+    buttonColorIncorrect: '',
   };
 
   componentDidMount() {
@@ -26,13 +29,29 @@ class Games extends Component {
     });
   };
 
+  handleClick = () => {
+    this.setState({
+      buttonColorCorrect: 'green',
+      buttonColorIncorrect: 'red',
+    });
+  };
+
+  // element.style.backgroundColor='red';
+
   allAnswers = () => {
-    const { incorrectQuestions, questions } = this.state;
+    const {
+      incorrectQuestions,
+      questions,
+      buttonColorCorrect,
+      buttonColorIncorrect,
+    } = this.state;
     const correctAnswer = () => (
       <button
-        data-testid="correct-answer"
-        type="button"
         key="0"
+        type="button"
+        className={ buttonColorCorrect }
+        onClick={ this.handleClick }
+        data-testid="correct-answer"
       >
         { questions.correct_answer }
       </button>
@@ -41,8 +60,10 @@ class Games extends Component {
       incorrectQuestions.map((answers, index) => (
         <button
           key={ index + 1 }
-          data-testid={ `wrong-answer-${index}` }
           type="button"
+          className={ buttonColorIncorrect }
+          onClick={ this.handleClick }
+          data-testid={ `wrong-answer-${index}` }
         >
           { answers }
         </button>
