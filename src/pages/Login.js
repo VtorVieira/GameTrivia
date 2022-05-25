@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types/';
+import { connect } from 'react-redux';
 import logo from '../trivia.png';
-import triviaAPI from '../api/triviaAPI';
+import { getToken, getImg } from '../api/triviaAPI';
+import { setUserData } from '../redux/actions';
 
 class Login extends Component {
   state = {
     name: '',
     email: '',
     disable: true,
-  }
+  };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value }, this.validateButton);
-  }
+  };
 
   validateButton = () => {
     const { email, name } = this.state;
@@ -22,6 +24,7 @@ class Login extends Component {
     const EMAIL_REGEX = /^[\w.-]+@[\w.-]+\.[\w]+(\.[\w]+)?$/i;
     const validateEmail = EMAIL_REGEX.test(email);
     const validateName = name.length > 0;
+
     if (validateEmail && validateName) validate = true;
 
     if (validate === true) {
@@ -29,20 +32,23 @@ class Login extends Component {
     } else {
       this.setState({ disable: true });
     }
-  }
+  };
 
   handleClickPlay = async () => {
-    const { history } = this.props;
-    const dataAPI = await triviaAPI();
+    const { history, setUserName } = this.props;
+    const dataAPI = await getToken();
     const { token } = dataAPI;
+    const { name, email } = this.state;
+    const hash = await getImg(email);
+    setUserName(name, hash);
     localStorage.setItem('token', token);
     history.push('/game');
-  }
+  };
 
   handleClickSettings = () => {
     const { history } = this.props;
     history.push('/settings');
-  }
+  };
 
   render() {
     const { name, email, disable } = this.state;
@@ -95,8 +101,13 @@ class Login extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  setUserName: (name, hash) => dispatch(setUserData(name, hash)),
+});
+
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  setUserName: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
