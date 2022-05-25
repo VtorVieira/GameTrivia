@@ -10,10 +10,15 @@ class Games extends Component {
     incorrectQuestions: [],
     buttonColorCorrect: '',
     buttonColorIncorrect: '',
+    disable: false,
   };
 
   componentDidMount() {
     this.queryQuestions();
+    const numSeconds = 30000;
+    setTimeout(() => {
+      this.setState({ disable: true });
+    }, numSeconds);
   }
 
   queryQuestions = async () => {
@@ -36,19 +41,19 @@ class Games extends Component {
     });
   };
 
-  // element.style.backgroundColor='red';
-
   allAnswers = () => {
     const {
       incorrectQuestions,
       questions,
       buttonColorCorrect,
       buttonColorIncorrect,
+      disable,
     } = this.state;
     const correctAnswer = () => (
       <button
         key="0"
         type="button"
+        disabled={ disable }
         className={ buttonColorCorrect }
         onClick={ this.handleClick }
         data-testid="correct-answer"
@@ -61,6 +66,7 @@ class Games extends Component {
         <button
           key={ index + 1 }
           type="button"
+          disabled={ disable }
           className={ buttonColorIncorrect }
           onClick={ this.handleClick }
           data-testid={ `wrong-answer-${index}` }
@@ -95,6 +101,7 @@ class Games extends Component {
   render() {
     const randomize = 0.5;
     const { questions } = this.state;
+
     return (
       <main className="App-header">
         <Header />
