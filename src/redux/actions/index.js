@@ -7,7 +7,7 @@ export const setUserData = (name, img) => ({
   payload: {
     name,
     img,
-  }
+  },
 });
 
 export const playerData = (total) => ({

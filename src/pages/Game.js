@@ -10,13 +10,11 @@ import { difficultyNumber, totalScore } from '../helpers/difficulty';
 class Games extends Component {
   state = {
     questions: [],
-    incorrectQuestions: [],
     buttonColorCorrect: '',
     buttonColorIncorrect: '',
     disable: false,
     answered: false,
     timeoutQuestion: '',
-    answersTest: [],
     timer: 30,
   };
 
@@ -35,25 +33,23 @@ class Games extends Component {
 
     const TIMEOUT_TIMER = 30000;
     const INTERVAL_TIMER = 1000;
-    
+
     const questionTimeout = setTimeout(() => {
       this.setState({ disable: true, answered: true });
     }, TIMEOUT_TIMER);
 
     const questionInterval = setInterval(() => {
       const { timer } = this.state;
-      timer === 0 ? (
-        clearInterval(questionInterval)
-      ) : (
-        this.setState((prev) => ({
-          timer: prev.timer - 1,
-        }))
-      )
-    }, INTERVAL_TIMER)
-    
+      const clear = clearInterval(questionInterval);
+      const set = this.setState((prev) => ({ timer: prev.timer - 1 }));
+      if (timer === 0) {
+        return clear;
+      }
+      return set;
+    }, INTERVAL_TIMER);
+
     this.setState({
       questions: questionsApi.results[0],
-      incorrectQuestions: questionsApi.results[0].incorrect_answers,
       buttonColorCorrect: '',
       buttonColorIncorrect: '',
       answered: false,
@@ -113,27 +109,25 @@ class Games extends Component {
     const rightAnswer = {
       answer: questions.correct_answer,
       validation: true,
-    }
-    const wrongAnswers = []
+    };
+    const wrongAnswers = [];
 
     questions.incorrect_answers.forEach((e) => {
       wrongAnswers.push({
         answer: e,
         validation: false,
       });
-    })
-    
+    });
+
     const RANDOMIZE = 0.5;
-    const allAnswers = [ rightAnswer, ...wrongAnswers ]
+    const allAnswers = [rightAnswer, ...wrongAnswers];
     const answers = allAnswers.sort(() => Math.random() - RANDOMIZE);
     this.setState({ wholeAnswers: answers });
   }
 
-
   render() {
-
     const { questions, answered, wholeAnswers, disable,
-    buttonColorCorrect, buttonColorIncorrect, timer } = this.state;
+      buttonColorCorrect, buttonColorIncorrect, timer } = this.state;
     return (
       <main className="App-header">
         <Header />
