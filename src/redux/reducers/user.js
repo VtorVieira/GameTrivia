@@ -5,18 +5,18 @@ const INITIAL_STATE = {
   img: '',
 };
 
-const userDataReducer = (state = INITIAL_STATE, action) => {
+const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case USER_DATA:
     console.log(action);
     return {
       ...state,
-      name: action.name,
-      img: action.img,
+      name: action.payload.name,
+      img: action.payload.img,
     };
   default:
     return state;
   }
 };
 
-export default userDataReducer;
+export default userReducer;
