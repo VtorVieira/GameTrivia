@@ -11,6 +11,7 @@ class Games extends Component {
     buttonColorCorrect: '',
     buttonColorIncorrect: '',
     disable: false,
+    answered: false,
   };
 
   componentDidMount() {
@@ -38,6 +39,7 @@ class Games extends Component {
     this.setState({
       buttonColorCorrect: 'green',
       buttonColorIncorrect: 'red',
+      answered: true,
     });
   };
 
@@ -79,6 +81,18 @@ class Games extends Component {
     return answers;
   };
 
+  handleClickNext = async () => {
+    const token = localStorage.getItem('token');
+    const questionsApi = await getQuestions(token);
+    this.setState({
+      questions: questionsApi.results[0],
+      incorrectQuestions: questionsApi.results[0].incorrect_answers,
+      buttonColorCorrect: '',
+      buttonColorIncorrect: '',
+      answered: false,
+    });
+  }
+
   // shuffle = (array) => {
   //   let currentIndex = array.length, randomIndex;
   //   while (currentIndex != 0) {
@@ -100,7 +114,7 @@ class Games extends Component {
 
   render() {
     const randomize = 0.5;
-    const { questions } = this.state;
+    const { questions, answered } = this.state;
 
     return (
       <main className="App-header">
@@ -111,6 +125,14 @@ class Games extends Component {
         <div data-testid="answer-options">
           { this.allAnswers().sort(() => Math.random() - randomize) }
         </div>
+        { answered ? (
+          <button
+            type="button"
+            onClick={ this.handleClickNext }
+            data-testid="btn-next"
+          >
+            Next
+          </button>) : null }
       </main>
     );
   }
