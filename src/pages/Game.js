@@ -139,7 +139,7 @@ class Games extends Component {
         localStorage.setItem('ranking', JSON.stringify([objPlayer]));
       }
       history.push('/feedback');
-    } this.queryQuestions();
+    }
   }
 
   allAnswers = () => {
