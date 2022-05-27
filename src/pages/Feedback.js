@@ -7,7 +7,7 @@ class Feedback extends Component {
     const { userImg, userName, playerScore, playerAssertions } = this.props;
     const three = 3;
     return (
-      <div>
+      <div className="App-header">
         <header>
           <img
             data-testid="header-profile-picture"
