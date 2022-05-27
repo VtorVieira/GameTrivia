@@ -13,8 +13,8 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    const { resetScore } = this.props;
-    resetScore();
+    const { resetGlobal } = this.props;
+    resetGlobal();
   }
 
   handleChange = ({ target }) => {
@@ -108,13 +108,13 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setUserName: (name, hash) => dispatch(setUserData(name, hash)),
-  resetScore: () => dispatch(resetScore()),
+  resetGlobal: () => dispatch(resetScore()),
 });
 
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   setUserName: PropTypes.func.isRequired,
-  resetScore: PropTypes.func.isRequired,
+  resetGlobal: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);
