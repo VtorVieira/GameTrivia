@@ -5,6 +5,7 @@ import PropTypes from 'prop-types/';
 class Feedback extends Component {
   render() {
     const { userImg, userName, playerScore, playerAssertions } = this.props;
+    const three = 3;
     return (
       <div>
         <header>
@@ -18,14 +19,17 @@ class Feedback extends Component {
           >
             { userName }
           </p>
-          <p
-            data-testid="header-score"
-          >
-            {`Placar: ${playerScore}`}
+          <p>
+            {'Placar: '}
+            <span
+              data-testid="header-score"
+            >
+              { playerScore }
+            </span>
           </p>
         </header>
         <section>
-          { playerAssertions >= 3 ? (
+          { playerAssertions >= three ? (
             <p data-testid="feedback-text">Well Done!</p>
           ) : (
             <p data-testid="feedback-text">Could be better...</p>
@@ -47,7 +51,7 @@ Feedback.propTypes = {
   userImg: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   playerScore: PropTypes.number.isRequired,
-  playerAssertions: PropTypes.number.isRequired
+  playerAssertions: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);
