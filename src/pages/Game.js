@@ -126,6 +126,18 @@ class Games extends Component {
       }, this.allAnswers);
     }
     if (playerAnswers === maxQuestions) {
+      const { userName, userImg, score } = this.props;
+      console.log(this.props);
+      const objPlayer = { name: userName, score, picture: userImg };
+      const oldStorage = JSON.parse(localStorage.getItem('ranking'));
+      console.log(oldStorage);
+      if (oldStorage !== null) {
+        const rankingArray = [];
+        rankingArray.push(...oldStorage, objPlayer);
+        localStorage.setItem('ranking', JSON.stringify(rankingArray));
+      } else {
+        localStorage.setItem('ranking', JSON.stringify([objPlayer]));
+      }
       history.push('/feedback');
     }
   }
@@ -212,6 +224,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   playerAnswers: state.player.answers,
+  userName: state.userReducer.name,
+  userImg: state.userReducer.img,
+  score: state.player.score,
 });
 
 Games.propTypes = {
@@ -220,6 +235,9 @@ Games.propTypes = {
   setPlayerAssertions: PropTypes.func.isRequired,
   setPlayerAnsweredQuestions: PropTypes.func.isRequired,
   playerAnswers: PropTypes.number.isRequired,
+  userImg: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);

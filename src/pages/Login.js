@@ -3,7 +3,7 @@ import PropTypes from 'prop-types/';
 import { connect } from 'react-redux';
 import logo from '../trivia.png';
 import { getToken, getImg } from '../api/triviaAPI';
-import { setUserData } from '../redux/actions';
+import { setUserData, resetScore } from '../redux/actions';
 
 class Login extends Component {
   state = {
@@ -11,6 +11,11 @@ class Login extends Component {
     email: '',
     disable: true,
   };
+
+  componentDidMount() {
+    const { resetGlobal } = this.props;
+    resetGlobal();
+  }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -103,11 +108,13 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setUserName: (name, hash) => dispatch(setUserData(name, hash)),
+  resetGlobal: () => dispatch(resetScore()),
 });
 
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   setUserName: PropTypes.func.isRequired,
+  resetGlobal: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);
