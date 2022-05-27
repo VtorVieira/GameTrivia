@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { getQuestions } from '../api/triviaAPI';
 import Header from '../components/Header';
 import './Game.css';
-import { playerData } from '../redux/actions';
+import { playerAnsweredQuestions, playerCorrectQuestions,
+  playerScore } from '../redux/actions';
 import { difficultyNumber, totalScore } from '../helpers/difficulty';
 
 class Games extends Component {
   state = {
     questions: [],
+    allQuestions: [],
     buttonColorCorrect: '',
     buttonColorIncorrect: '',
     disable: false,
@@ -22,15 +24,7 @@ class Games extends Component {
     this.queryQuestions();
   }
 
-  queryQuestions = async () => {
-    const { history } = this.props;
-    const token = localStorage.getItem('token');
-    const questionsApi = await getQuestions(token);
-
-    if (questionsApi.response_code !== 0) {
-      history.push('/');
-    }
-
+  timeoutsAndIntervals = () => {
     const TIMEOUT_TIMER = 30000;
     const INTERVAL_TIMER = 1000;
 
@@ -49,28 +43,48 @@ class Games extends Component {
     }, INTERVAL_TIMER);
 
     this.setState({
+      timeoutQuestion: questionTimeout,
+      intervalQuestion: questionInterval,
+      timer: 30,
+    });
+  }
+
+  queryQuestions = async () => {
+    const { history } = this.props;
+    const token = localStorage.getItem('token');
+    const questionsApi = await getQuestions(token);
+
+    if (questionsApi.response_code !== 0) {
+      history.push('/');
+    }
+
+    this.timeoutsAndIntervals();
+
+    this.setState({
       questions: questionsApi.results[0],
+      allQuestions: questionsApi.results,
       buttonColorCorrect: '',
       buttonColorIncorrect: '',
       answered: false,
       disable: false,
-      timeoutQuestion: questionTimeout,
-      intervalQuestion: questionInterval,
-      timer: 30,
     }, this.allAnswers);
   };
 
   handleRightAnswerClick = () => {
-    const { setPlayerScore } = this.props;
+    const { setPlayerScore, setPlayerAssertions,
+      setPlayerAnsweredQuestions } = this.props;
     const { timeoutQuestion, intervalQuestion, timer, questions } = this.state;
     const { difficulty } = questions;
 
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
+    this.timeoutsAndIntervals();
 
     const level = difficultyNumber(difficulty);
     const total = totalScore(timer, level);
     setPlayerScore(total);
+    setPlayerAssertions();
+    setPlayerAnsweredQuestions();
 
     this.setState({
       buttonColorCorrect: 'green',
@@ -80,10 +94,13 @@ class Games extends Component {
   };
 
   handleClick = () => {
+    const { setPlayerAnsweredQuestions } = this.props;
     const { timeoutQuestion, intervalQuestion } = this.state;
 
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
+    this.timeoutsAndIntervals();
+    setPlayerAnsweredQuestions();
 
     this.setState({
       buttonColorCorrect: 'green',
@@ -93,12 +110,24 @@ class Games extends Component {
   };
 
   handleClickNext = () => {
-    const { timeoutQuestion, intervalQuestion } = this.state;
+    const { playerAnswers, history } = this.props;
+    const { timeoutQuestion, intervalQuestion, allQuestions } = this.state;
+    const maxQuestions = 5;
 
-    clearTimeout(timeoutQuestion);
-    clearInterval(intervalQuestion);
+    if (playerAnswers < maxQuestions) {
+      clearTimeout(timeoutQuestion);
+      clearInterval(intervalQuestion);
 
-    this.queryQuestions();
+      this.setState({
+        questions: allQuestions[playerAnswers],
+        buttonColorCorrect: '',
+        buttonColorIncorrect: '',
+        answered: false,
+      }, this.allAnswers);
+    }
+    if (playerAnswers === maxQuestions) {
+      history.push('/feedback');
+    }
   }
 
   allAnswers = () => {
@@ -176,12 +205,21 @@ class Games extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setPlayerScore: (total) => dispatch(playerData(total)),
+  setPlayerScore: (total) => dispatch(playerScore(total)),
+  setPlayerAssertions: () => dispatch(playerCorrectQuestions()),
+  setPlayerAnsweredQuestions: () => dispatch(playerAnsweredQuestions()),
+});
+
+const mapStateToProps = (state) => ({
+  playerAnswers: state.player.answers,
 });
 
 Games.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   setPlayerScore: PropTypes.func.isRequired,
+  setPlayerAssertions: PropTypes.func.isRequired,
+  setPlayerAnsweredQuestions: PropTypes.func.isRequired,
+  playerAnswers: PropTypes.number.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Games);
+export default connect(mapStateToProps, mapDispatchToProps)(Games);
