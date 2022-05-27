@@ -1,4 +1,5 @@
-import { PLAYER_SCORE, PLAYER_ANSWERS, PLAYER_ASSERTIONS } from '../actions';
+import { PLAYER_SCORE,
+  PLAYER_ANSWERS, PLAYER_ASSERTIONS, RESET_GLOBAL_STATE } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -24,6 +25,13 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       assertions: state.assertions + action.payload,
+    };
+  case RESET_GLOBAL_STATE:
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
+      answers: 0,
     };
   default:
     return state;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types/';
 
 class Feedback extends Component {
   render() {
-    const { userImg, userName, playerScore, playerAssertions } = this.props;
+    const { userImg, userName, playerScore, playerAssertions, history } = this.props;
     const three = 3;
     return (
       <div className="App-header">
@@ -35,6 +35,30 @@ class Feedback extends Component {
             <p data-testid="feedback-text">Could be better...</p>
           ) }
         </section>
+        <section>
+          <div data-testid="feedback-total-score">
+            { playerScore }
+          </div>
+          <div data-testid="feedback-total-question">
+            { playerAssertions }
+          </div>
+        </section>
+        <div>
+          <button
+            type="button"
+            data-testid="btn-play-again"
+            onClick={ () => history.push('/') }
+          >
+            Play Again
+          </button>
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ () => history.push('/ranking') }
+          >
+            Ranking
+          </button>
+        </div>
       </div>
     );
   }
@@ -52,6 +76,7 @@ Feedback.propTypes = {
   userName: PropTypes.string.isRequired,
   playerScore: PropTypes.number.isRequired,
   playerAssertions: PropTypes.number.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);

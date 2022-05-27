@@ -3,6 +3,7 @@ export const USER_IMAGE = 'USER_IMAGE';
 export const PLAYER_SCORE = 'PLAYER_SCORE';
 export const PLAYER_ANSWERS = 'PLAYER_ANSWERS';
 export const PLAYER_ASSERTIONS = 'PLAYER_ASSERTIONS';
+export const RESET_GLOBAL_STATE = 'RESET_GLOBAL_STATE';
 
 export const setUserData = (name, img) => ({
   type: USER_DATA,
@@ -25,4 +26,9 @@ export const playerAnsweredQuestions = () => ({
 export const playerCorrectQuestions = () => ({
   type: PLAYER_ASSERTIONS,
   payload: 1,
+});
+
+export const resetScore = () => ({
+  type: RESET_GLOBAL_STATE,
+
 });
