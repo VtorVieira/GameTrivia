@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getQuestions } from '../api/triviaAPI';
 import Header from '../components/Header';
 import './Game.css';
-import { playerData } from '../redux/actions';
+import { playerScore } from '../redux/actions';
 import { difficultyNumber, totalScore } from '../helpers/difficulty';
 
 class Games extends Component {
@@ -176,7 +176,7 @@ class Games extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setPlayerScore: (total) => dispatch(playerData(total)),
+  setPlayerScore: (total) => dispatch(playerScore(total)),
 });
 
 Games.propTypes = {
