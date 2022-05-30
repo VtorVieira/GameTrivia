@@ -66,14 +66,12 @@ describe('Desenvolva testes para atingir 90% de cobertura da tela de Login', () 
     expect(btnPlay).toBeEnabled();
     userEvent.click(btnPlay);
     const { pathname } = history.location;
-
     await waitFor(() => expect(pathname).toBe('/game'));
   })
 
   test('Verifica se o botão de configurações redireciona a pessoa para a tela de configurações', () => {
     const { history } = renderWithRouterAndRedux(<App />);
     const btnSettings = screen.getByTestId('btn-settings');
-
     userEvent.click(btnSettings);
     const { pathname } = history.location;
     expect(pathname).toBe('/settings');
