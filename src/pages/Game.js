@@ -34,10 +34,9 @@ class Games extends Component {
 
     const questionInterval = setInterval(() => {
       const { timer } = this.state;
-      const clear = clearInterval(questionInterval);
       const set = this.setState((prev) => ({ timer: prev.timer - 1 }));
       if (timer === 0) {
-        return clear;
+        return clearInterval(questionInterval);
       }
       return set;
     }, INTERVAL_TIMER);
