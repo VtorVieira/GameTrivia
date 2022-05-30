@@ -1,9 +1,9 @@
 import React from "react";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
+import userEvent from "@testing-library/user-event";
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import App from "../App";
-import Login from '../pages/Login';
+import Login from "../pages/Login";
 
 const EMAIL = 'test@test.com';
 const NAME = 'player';
