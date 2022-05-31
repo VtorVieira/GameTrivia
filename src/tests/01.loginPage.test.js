@@ -14,7 +14,7 @@ const fillInputs = (name, email) => {
 }
 
 describe('Desenvolva testes para atingir 90% de cobertura da tela de Login', () => {
-  test('Verifica se os inputs corretos estão na tela', () => {
+  test('Verifica se os inputs e botões corretos estão na tela', () => {
     renderWithRouterAndRedux(<Login/>);
     expect(screen.getByTestId('input-player-name')).toBeInTheDocument();
     expect(screen.getByTestId('input-gravatar-email')).toBeInTheDocument();
