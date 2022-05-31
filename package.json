@@ -22,8 +22,8 @@
   "scripts": {
     "cy": "cypress run",
     "cy:open": "cypress open",
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",    
     "test": "react-scripts test",
     "test:watch": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
