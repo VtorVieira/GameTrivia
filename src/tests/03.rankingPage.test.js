@@ -20,7 +20,7 @@ const playersRanking = [
 global.localStorage.setItem('ranking', JSON.stringify(playersRanking));
 
 describe('Desenvolva testes para atingir 90% de cobertura da tela de Ranking', () => {
-  it('Verifica se a página de Ranking tem o caminho src/pages/Ranking.js', () => {
+  test('Verifica se a página de Ranking tem o caminho src/pages/Ranking.js', () => {
     const { history } = renderWithRouterAndRedux(<App />)
     history.push('/ranking');
     
