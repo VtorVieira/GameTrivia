@@ -35,7 +35,7 @@ class Games extends Component {
     const questionInterval = setInterval(() => {
       const { timer } = this.state;
       const set = this.setState((prev) => ({ timer: prev.timer - 1 }));
-      if (timer === 0) {
+      if (timer === 1) {
         return clearInterval(questionInterval);
       }
       return set;
@@ -77,7 +77,7 @@ class Games extends Component {
 
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
-    this.timeoutsAndIntervals();
+    // this.timeoutsAndIntervals();
 
     const level = difficultyNumber(difficulty);
     const total = totalScore(timer, level);
@@ -88,6 +88,7 @@ class Games extends Component {
     this.setState({
       buttonColorCorrect: 'green',
       buttonColorIncorrect: 'red',
+      disable: true,
       answered: true,
     });
   };
@@ -98,12 +99,13 @@ class Games extends Component {
 
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
-    this.timeoutsAndIntervals();
+    // this.timeoutsAndIntervals();
     setPlayerAnsweredQuestions();
 
     this.setState({
       buttonColorCorrect: 'green',
       buttonColorIncorrect: 'red',
+      disable: true,
       answered: true,
     });
   };
@@ -113,6 +115,8 @@ class Games extends Component {
     const { timeoutQuestion, intervalQuestion, allQuestions } = this.state;
     const maxQuestions = 5;
 
+    this.timeoutsAndIntervals();
+
     if (playerAnswers < maxQuestions) {
       clearTimeout(timeoutQuestion);
       clearInterval(intervalQuestion);
@@ -121,15 +125,14 @@ class Games extends Component {
         questions: allQuestions[playerAnswers],
         buttonColorCorrect: '',
         buttonColorIncorrect: '',
+        disable: false,
         answered: false,
       }, this.allAnswers);
     }
     if (playerAnswers === maxQuestions) {
       const { userName, userImg, score } = this.props;
-      console.log(this.props);
       const objPlayer = { name: userName, score, picture: userImg };
       const oldStorage = JSON.parse(localStorage.getItem('ranking'));
-      console.log(oldStorage);
       if (oldStorage !== null) {
         const rankingArray = [];
         rankingArray.push(...oldStorage, objPlayer);

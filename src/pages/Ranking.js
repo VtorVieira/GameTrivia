@@ -24,7 +24,7 @@ class Ranking extends Component {
           type="button"
           onClick={ () => history.push('/') }
         >
-          Inicio
+          Início
         </button>
       </>
     );
