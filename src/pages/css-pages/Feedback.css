@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap') ;
+
+.feedbackPage {
+  align-items: center;
+  background-image: url('bgopacidadeok.jpg');
+  display: flex;
+  flex-direction: column;
+  font-family: Oswald , Arial , sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.playerName {
+  padding-left: 50px;
+}
+
+.playerScore {
+  margin-top: 30px;
+}
+
+.feedback-header {
+  align-items: center;
+  background-color: #282c34;
+  color: aliceblue;
+  display: flex;
+  font-size: 30px;
+  height: 90px;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100vw;
+}
+
+.feedbackContainer {
+  align-items: center;
+  background-color: aliceblue;
+  border-radius: 20px;
+  box-shadow: 4px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  height: 400px;
+  justify-content: space-around;
+  margin-top: 30px;
+  padding: 20px;
+  width: 60vw;
+}
+
+.wellDone {
+  height: 60%;
+  margin-top: 10px;
+}
+
+.couldBe {
+  height: 25vh;
+  margin-top: 10px;
+}
+
+.resultsGame {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  min-width: 250px;
+}
+
+button {
+  border-radius: 5px;
+  font-size: 20px;
+  height: 35px;
+  margin-top: 50px;
+  padding: 5px;
+}
