@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types/';
+import './css-pages/Feedback.css';
+
+const couldBe = require('../images/could-be.gif');
+const wellDone = require('../images/well-done.gif');
 
 class Feedback extends Component {
   render() {
     const { userImg, userName, playerScore, playerAssertions, history } = this.props;
     const three = 3;
     return (
-      <div className="App-header">
-        <header>
+      <div className="feedbackPage">
+        <header className="feedback-header">
           <img
             data-testid="header-profile-picture"
             src={ userImg }
@@ -16,11 +20,12 @@ class Feedback extends Component {
           />
           <p
             data-testid="header-player-name"
+            className="playerName"
           >
             { userName }
           </p>
           <p>
-            {'Placar: '}
+            {'Score: '}
             <span
               data-testid="header-score"
             >
@@ -28,26 +33,43 @@ class Feedback extends Component {
             </span>
           </p>
         </header>
-        <section>
-          { playerAssertions >= three ? (
-            <p data-testid="feedback-text">Well Done!</p>
-          ) : (
-            <p data-testid="feedback-text">Could be better...</p>
-          ) }
-        </section>
-        <section>
-          <div data-testid="feedback-total-score">
-            { playerScore }
-          </div>
-          <div data-testid="feedback-total-question">
-            { playerAssertions }
-          </div>
-        </section>
-        <div>
+        <div className="feedbackContainer">
+          <section>
+            { playerAssertions >= three ? (
+              <div>
+                <p data-testid="feedback-text">Well Done!</p>
+                <img
+                  alt="well-done"
+                  src={ wellDone }
+                  className="wellDone"
+                />
+              </div>
+            ) : (
+              <div>
+                <p data-testid="feedback-text">Could be better...</p>
+                <img
+                  alt="well-done"
+                  src={ couldBe }
+                  className="couldBe"
+                />
+              </div>
+            ) }
+          </section>
+          <section className="resultsGame">
+            <div data-testid="feedback-total-score">
+              { `Total score: ${playerScore}` }
+            </div>
+            <div data-testid="feedback-total-question">
+              { `Total hits: ${playerAssertions}` }
+            </div>
+          </section>
+        </div>
+        <div className="buttons">
           <button
             type="button"
             data-testid="btn-play-again"
             onClick={ () => history.push('/') }
+            className="btnClass"
           >
             Play Again
           </button>
@@ -55,6 +77,7 @@ class Feedback extends Component {
             type="button"
             data-testid="btn-ranking"
             onClick={ () => history.push('/ranking') }
+            className="btnClass"
           >
             Ranking
           </button>
