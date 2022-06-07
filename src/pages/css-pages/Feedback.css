@@ -24,7 +24,6 @@
   color: aliceblue;
   display: flex;
   font-size: 30px;
-  height: 90px;
   justify-content: space-between;
   padding: 20px;
   width: 100vw;
@@ -69,7 +68,7 @@
   min-width: 250px;
 }
 
-button {
+.btnClass {
   border-radius: 5px;
   font-size: 20px;
   height: 35px;
