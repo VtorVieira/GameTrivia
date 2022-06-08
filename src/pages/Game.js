@@ -3,6 +3,7 @@ import PropTypes from 'prop-types/';
 import { connect } from 'react-redux';
 import { getQuestions } from '../api/triviaAPI';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import './Game.css';
 import { playerAnsweredQuestions, playerCorrectQuestions,
   playerScore } from '../redux/actions';
@@ -213,6 +214,7 @@ class Games extends Component {
           >
             Next
           </button>) : null }
+        <Footer />
       </main>
     );
   }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import logo from '../trivia.png';
 import { getToken, getImg } from '../api/triviaAPI';
 import { setUserData, resetScore } from '../redux/actions';
+import Footer from '../components/Footer';
 
 class Login extends Component {
   state = {
@@ -101,6 +102,7 @@ class Login extends Component {
             Settings
           </button>
         </section>
+        <Footer />
       </main>
     );
   }
