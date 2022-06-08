@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap') ;
+
+.headerPage {
+  align-items: center;
+  background-color: #282c34;
+  color: aliceblue;
+  display: flex;
+  font-family: Oswald , Helvetica , sans-serif;
+  justify-content: space-between;
+  margin-top: 0;
+  padding: 20px;
+  width: 100vw;
+}
+
+.playerName {
+  align-items: center;
+  font-size: 30px;
+  margin-top: 20px;
+  padding-left: 50px;
+}
+
+.playerScore {
+  align-items: center;
+  font-size: 30px;
+  margin-top: 20px;
+}

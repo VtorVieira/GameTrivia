@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap') ;
+
+* {
+  overflow-x: hidden;
+}
+
+.rankingPage {
+  align-items: center;
+  background-attachment: fixed;
+  background-image: url('bgopacidadeok.jpg');
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  font-family: Oswald , Arial , sans-serif;
+  min-height: 100vh;
+}
+
+.ranking-header {
+  align-items: center;
+  background-color: #282c34;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-left: 70px;
+  position: fixed;
+  width: 105%;
+  z-index: 1000;
+}
+
+.triviaLogoRanking {
+  height: 10vh;
+}
+
+.rankingHomeBtn {
+  font-family: Oswald , Arial , sans-serif;
+  font-size: 20px;
+  margin-right: 50px;
+  padding: 10px;
+}
+
+.rankingContainer {
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(240, 248, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 4px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  justify-content: space-around;
+  margin-top: 150px;
+  min-height: 400px;
+  padding: 35px;
+  width: 55vw;
+}
+
+.rankingTitleTable {
+  background-color: #282c34;
+  border-radius: 10px;
+  color: aliceblue;
+  display: flex;
+  font-size: 30px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 50vw;
+}
+
+.rankingPlayer {
+  align-items: center;
+  background-color: #282c34;
+  border-radius: 10px;
+  color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 20px;
+  width: 50vw;
+}
+
+.nameAndScore {
+  align-items: center;
+  display: flex;
+  font-size: 25px;
+  justify-content: space-between;
+  padding-right: 20px;
+  width: 80%;
+}

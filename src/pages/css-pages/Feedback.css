@@ -31,26 +31,21 @@
 
 .feedbackContainer {
   align-items: center;
-  background-color: aliceblue;
+  backdrop-filter: blur(5px);
+  background-color: rgba(240, 248, 255, 0.4);
   border-radius: 20px;
   box-shadow: 4px;
   color: black;
   display: flex;
   flex-direction: column;
   font-size: 30px;
-  height: 400px;
   justify-content: space-around;
   margin-top: 30px;
   padding: 20px;
   width: 60vw;
 }
 
-.wellDone {
-  height: 60%;
-  margin-top: 10px;
-}
-
-.couldBe {
+.gifMsg {
   height: 25vh;
   margin-top: 10px;
 }
@@ -63,15 +58,15 @@
 .buttons {
   align-items: center;
   display: flex;
-  height: 30px;
   justify-content: space-between;
+  margin-top: 30px;
   min-width: 250px;
 }
 
 .btnClass {
   border-radius: 5px;
+  font-family: Oswald , Arial , sans-serif;
   font-size: 20px;
-  height: 35px;
   margin-top: 50px;
   padding: 5px;
 }

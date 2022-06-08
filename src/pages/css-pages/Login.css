@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap') ;
+
+* {
+  overflow-x: hidden;
+}
+
+.Login-main {
+  align-items: center;
+  background-attachment: fixed;
+  background-image: url('bglogin1.jpg');
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  font-family: Oswald , Arial , sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.logoTrivia {
+  margin-top: 50px;
+  min-height: 20vh;
+}
+
+.LoginSection {
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(40, 44, 52, 0.85);
+  border-radius: 10px;
+  height: 350px;
+  margin-top: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.loginInputs {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  min-height: 80px;
+  padding: 10px;
+  top: 10px;
+}
+
+.loginBtns {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 30px;
+  min-height: 70px;
+}
+
+.inputs {
+  border-radius: 5px;
+  font-family: Oswald , Helvetica , sans-serif;
+  font-size: 18px;
+  height: 40px;
+  margin-top: 30px;
+  padding: 5px;
+  width: 250px;
+}
+
+.LoginButtons {
+  align-items: center;
+  border-radius: 5px;
+  font-family: Oswald , Helvetica , sans-serif;
+  font-size: 15px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.App-logo {
+  padding-bottom: 20px;
+}
+
+.btn-play {
+  color: #282c34;
+  margin: 5px;
+}

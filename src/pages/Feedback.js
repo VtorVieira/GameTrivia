@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types/';
 import './css-pages/Feedback.css';
+import Footer from '../components/Footer';
 
 const couldBe = require('../images/could-be.gif');
 const wellDone = require('../images/well-done.gif');
@@ -41,16 +42,16 @@ class Feedback extends Component {
                 <img
                   alt="well-done"
                   src={ wellDone }
-                  className="wellDone"
+                  className="gifMsg"
                 />
               </div>
             ) : (
               <div>
                 <p data-testid="feedback-text">Could be better...</p>
                 <img
-                  alt="well-done"
+                  alt="could-be-better"
                   src={ couldBe }
-                  className="couldBe"
+                  className="gifMsg"
                 />
               </div>
             ) }
@@ -82,6 +83,7 @@ class Feedback extends Component {
             Ranking
           </button>
         </div>
+        <Footer />
       </div>
     );
   }
