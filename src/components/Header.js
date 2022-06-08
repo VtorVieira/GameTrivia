@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     const { userImg, userName, playerScore } = this.props;
     return (
-      <header>
+      <header className="headerPage">
         <img
           data-testid="header-profile-picture"
           src={ userImg }
@@ -15,11 +15,13 @@ class Header extends Component {
         />
         <p
           data-testid="header-player-name"
+          className="playerName"
         >
           { userName }
         </p>
         <p
           data-testid="header-score"
+          className="playerScore"
         >
           {`Placar: ${playerScore}`}
         </p>

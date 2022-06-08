@@ -7,22 +7,14 @@
 }
 
 .gamePage {
-  background-image: url('./bgopacidadeok.jpg');
-  font-family: Oswald , Helvetica , sans-serif;
-}
-
-.header {
-  background-color: #282c34;
-  color: aliceblue;
+  align-items: center;
+  background-attachment: fixed;
+  background-image: url('bgopacidadeok.jpg');
+  background-repeat: no-repeat;
   display: flex;
-  height: 90px;
-  justify-content: space-between;
-  margin-top: 0;
-  padding: 20px;
-}
-
-.section-header {
-  display: flex;
+  flex-direction: column;
+  font-family: Oswald , Arial , sans-serif;
+  min-height: 100vh;
 }
 
 .timer {
@@ -44,28 +36,33 @@
   border-radius: 5px;
   color: aliceblue;
   display: flex;
+  font-size: 25px;
   justify-content: center;
   padding: 10px;
 }
 
 .question {
+  font-size: 30px;
   margin-top: 30px;
 }
 
 .Card-Game {
   align-items: center;
-  background-color: aliceblue;
-  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(240, 248, 255, 0.4);
+  border-radius: 20px;
   box-shadow: 4px;
   color: black;
   display: flex;
   flex-direction: column;
+  max-width: 60vw;
   min-height: 150px;
   padding: 30px;
 }
 
 .btnAnswers {
   border-radius: 5px;
+  font-family: Oswald , Arial , sans-serif;
   font-size: 15px;
   padding: 5px;
 }
@@ -73,12 +70,15 @@
 .button-answer {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 30px;
   width: 60vw;
 }
 
 .btnNext {
   border-radius: 5px;
+  font-family: Oswald , Arial , sans-serif;
   font-size: 20px;
+  margin-top: 20px;
   padding: 5px;
 }
 

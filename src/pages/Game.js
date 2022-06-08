@@ -28,11 +28,9 @@ class Games extends Component {
   timeoutsAndIntervals = () => {
     const TIMEOUT_TIMER = 30000;
     const INTERVAL_TIMER = 1000;
-
     const questionTimeout = setTimeout(() => {
       this.setState({ disable: true, answered: true });
     }, TIMEOUT_TIMER);
-
     const questionInterval = setInterval(() => {
       const { timer } = this.state;
       const set = this.setState((prev) => ({ timer: prev.timer - 1 }));
@@ -53,13 +51,11 @@ class Games extends Component {
     const { history } = this.props;
     const token = localStorage.getItem('token');
     const questionsApi = await getQuestions(token);
-
     if (questionsApi.response_code !== 0) {
       history.push('/');
     }
 
     this.timeoutsAndIntervals();
-
     this.setState({
       questions: questionsApi.results[0],
       allQuestions: questionsApi.results,
@@ -75,17 +71,14 @@ class Games extends Component {
       setPlayerAnsweredQuestions } = this.props;
     const { timeoutQuestion, intervalQuestion, timer, questions } = this.state;
     const { difficulty } = questions;
-
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
     // this.timeoutsAndIntervals();
-
     const level = difficultyNumber(difficulty);
     const total = totalScore(timer, level);
     setPlayerScore(total);
     setPlayerAssertions();
     setPlayerAnsweredQuestions();
-
     this.setState({
       buttonColorCorrect: 'green',
       buttonColorIncorrect: 'red',
@@ -97,12 +90,10 @@ class Games extends Component {
   handleClick = () => {
     const { setPlayerAnsweredQuestions } = this.props;
     const { timeoutQuestion, intervalQuestion } = this.state;
-
     clearTimeout(timeoutQuestion);
     clearInterval(intervalQuestion);
     // this.timeoutsAndIntervals();
     setPlayerAnsweredQuestions();
-
     this.setState({
       buttonColorCorrect: 'green',
       buttonColorIncorrect: 'red',
@@ -121,7 +112,6 @@ class Games extends Component {
     if (playerAnswers < maxQuestions) {
       clearTimeout(timeoutQuestion);
       clearInterval(intervalQuestion);
-
       this.setState({
         questions: allQuestions[playerAnswers],
         buttonColorCorrect: '',
@@ -149,20 +139,17 @@ class Games extends Component {
     const {
       questions,
     } = this.state;
-
     const rightAnswer = {
       answer: questions.correct_answer,
       validation: true,
     };
     const wrongAnswers = [];
-
     questions.incorrect_answers.forEach((e) => {
       wrongAnswers.push({
         answer: e,
         validation: false,
       });
     });
-
     const RANDOMIZE = 0.5;
     const allAnswers = [rightAnswer, ...wrongAnswers];
     const answers = allAnswers.sort(() => Math.random() - RANDOMIZE);
@@ -175,18 +162,29 @@ class Games extends Component {
     return (
       <main className="gamePage">
         <Header />
-        <p>{timer}</p>
-        <h1 data-testid="Games-title">Games</h1>
-        <p data-testid="question-category">{ questions.category }</p>
-        <p data-testid="question-text">{ questions.question }</p>
-        <div data-testid="answer-options">
+        <p className="timer">{timer}</p>
+        <div className="Card-Game">
+          <p
+            data-testid="question-category"
+            className="cate"
+          >
+            { questions.category }
+          </p>
+          <p
+            data-testid="question-text"
+            className="question"
+          >
+            { questions.question }
+          </p>
+        </div>
+        <div data-testid="answer-options" className="button-answer">
           { wholeAnswers && wholeAnswers.map((e, i) => (
             e.validation === true ? (
               <button
                 key="0"
                 type="button"
                 disabled={ disable }
-                className={ buttonColorCorrect }
+                className={ `btnAnswers ${buttonColorCorrect}` }
                 onClick={ this.handleRightAnswerClick }
                 data-testid="correct-answer"
               >
@@ -197,7 +195,7 @@ class Games extends Component {
                 key={ i + 1 }
                 type="button"
                 disabled={ disable }
-                className={ buttonColorIncorrect }
+                className={ `btnAnswers ${buttonColorIncorrect}` }
                 onClick={ this.handleClick }
                 data-testid={ `wrong-answer-${i}` }
               >
@@ -211,6 +209,7 @@ class Games extends Component {
             type="button"
             onClick={ this.handleClickNext }
             data-testid="btn-next"
+            className="btnNext"
           >
             Next
           </button>) : null }
