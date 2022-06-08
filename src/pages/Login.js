@@ -5,6 +5,7 @@ import logo from '../trivia.png';
 import { getToken, getImg } from '../api/triviaAPI';
 import { setUserData, resetScore } from '../redux/actions';
 import Footer from '../components/Footer';
+import './css-pages/Login.css';
 
 class Login extends Component {
   state = {
@@ -59,48 +60,56 @@ class Login extends Component {
   render() {
     const { name, email, disable } = this.state;
     return (
-      <main className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <section id="LoginSection">
-          <label htmlFor="NomeInput">
-            Nome:
-            <input
-              id="NameInput"
-              type="text"
-              name="name"
-              value={ name }
-              onChange={ this.handleChange }
-              data-testid="input-player-name"
-              isrequired="true"
-            />
-          </label>
-          <label htmlFor="EmailInput">
-            Email:
-            <input
-              id="EmailInput"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ this.handleChange }
-              data-testid="input-gravatar-email"
-              isrequired="true"
-            />
-          </label>
-          <button
-            type="button"
-            data-testid="btn-play"
-            disabled={ disable }
-            onClick={ this.handleClickPlay }
-          >
-            SUA VEZ
-          </button>
-          <button
-            type="button"
-            data-testid="btn-settings"
-            onClick={ this.handleClickSettings }
-          >
-            Settings
-          </button>
+      <main className="Login-main">
+        <img src={ logo } className="App-logo logoTrivia" alt="logo" />
+        <section className="LoginSection">
+          <div className="loginInputs">
+            <label htmlFor="NomeInput">
+              <input
+                id="NameInput"
+                type="text"
+                name="name"
+                value={ name }
+                onChange={ this.handleChange }
+                data-testid="input-player-name"
+                isrequired="true"
+                className="inputs"
+                placeholder="Username"
+              />
+            </label>
+            <label htmlFor="EmailInput">
+              <input
+                id="EmailInput"
+                type="email"
+                name="email"
+                value={ email }
+                onChange={ this.handleChange }
+                data-testid="input-gravatar-email"
+                isrequired="true"
+                className="inputs"
+                placeholder="Email"
+              />
+            </label>
+          </div>
+          <div className="loginBtns">
+            <button
+              type="button"
+              data-testid="btn-play"
+              disabled={ disable }
+              onClick={ this.handleClickPlay }
+              className="LoginButtons"
+            >
+              SUA VEZ
+            </button>
+            <button
+              type="button"
+              data-testid="btn-settings"
+              onClick={ this.handleClickSettings }
+              className="LoginButtons"
+            >
+              Settings
+            </button>
+          </div>
         </section>
         <Footer />
       </main>

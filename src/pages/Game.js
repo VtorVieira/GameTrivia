@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getQuestions } from '../api/triviaAPI';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import './Game.css';
+import './css-pages/Game.css';
 import { playerAnsweredQuestions, playerCorrectQuestions,
   playerScore } from '../redux/actions';
 import { difficultyNumber, totalScore } from '../helpers/difficulty';
@@ -173,7 +173,7 @@ class Games extends Component {
     const { questions, answered, wholeAnswers, disable,
       buttonColorCorrect, buttonColorIncorrect, timer } = this.state;
     return (
-      <main className="App-header">
+      <main className="gamePage">
         <Header />
         <p>{timer}</p>
         <h1 data-testid="Games-title">Games</h1>
