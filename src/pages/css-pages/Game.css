@@ -23,11 +23,12 @@
   border-radius: 50%;
   color: #282c34;
   display: flex;
-  height: 75px;
+  font-size: 35px;
+  height: 100px;
   justify-content: center;
   margin-bottom: 30px;
   margin-top: 30px;
-  width: 75px;
+  width: 100px;
 }
 
 .cate {
