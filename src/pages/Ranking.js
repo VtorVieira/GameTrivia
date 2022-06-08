@@ -11,6 +11,7 @@ class Ranking extends Component {
     const storage = JSON.parse(localStorage.getItem('ranking'));
     const order = storage.sort((a, b) => (b.score - a.score));
     console.log(order);
+    const titleH1 = ' ';
     return (
       <section className="rankingPage">
         <header className="ranking-header">
@@ -28,6 +29,7 @@ class Ranking extends Component {
             PLAY AGAIN!
           </button>
         </header>
+        <h1 data-testid="ranking-title">{ titleH1 }</h1>
         <ul className="rankingContainer">
           <div className="rankingTitleTable">
             <p>PLAYER</p>
