@@ -6,6 +6,9 @@ Nesse projeto desenvolvemos um jogo de perguntas e respostas baseado no jogo Tri
 - Ser redirecionada, após 5 perguntas respondidas, para a tela de score, onde o texto mostrado depende do número de acertos.
 - Visualizar a página de ranking, se quiser, ao final de cada jogo.
 - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app.
+
+## Apresentação
+https://www.canva.com/design/DAFDDMnuPgw/fhi9NUhtKa2RX5fG3RZASg/view?utm_content=DAFDDMnuPgw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 ## Tecnologias usadas
 Front-end:
 > Desenvolvido usando: React, Redux, RTL (React Testing Library)
